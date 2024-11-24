@@ -1,0 +1,29 @@
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, explode, split, lower, regexp_replace
+
+spark = SparkSession.builder \
+    .appName("Movie Word Count with Preprocessing") \
+    .getOrCreate()
+
+df = spark.read.csv('movies.csv', header=True)
+
+words_df = df.select(
+    explode(
+        split(
+            regexp_replace(lower(col("Film")), "[^a-zA-Z0-9\s]", ""),
+            "\s+"
+        )
+    ).alias("word")
+)
+
+stop_words = set(["the", "and", "a", "of", "to", "in", "is", "it", "you", "that", "for", "on", "with", "as", "this", "by"])
+words_df = words_df.filter(~col("word").isin(stop_words))
+
+word_counts = words_df.groupBy("word").count()
+
+most_common_word = word_counts.orderBy(col("count").desc()).first()
+
+print(f"Самое частое слово '{most_common_word['word']}' которое встречается {most_common_word['count']} раза.")
+
+spark.stop()
