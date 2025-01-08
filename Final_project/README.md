@@ -36,6 +36,6 @@ pip install -r kafka_req.txt
 
 ## 2. Airflow
 
-Заходим по адресу: [http://localhost:8081/.](http://127.0.0.0:8081/login/)
-Логин: admin
+Заходим по адресу: [http://127.0.0.0:8081/](http://127.0.0.0:8081/login/)  
+Логин: admin  
 Пароль: admin
