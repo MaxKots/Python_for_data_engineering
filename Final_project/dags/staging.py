@@ -14,7 +14,7 @@ with DAG(
     tags=["staging"],
 ) as dag:
 
-    msql_mart = PythonOperator(
+    create_staging_table = PythonOperator(
         task_id="create_staging_table",
         python_callable=create_staging
     )

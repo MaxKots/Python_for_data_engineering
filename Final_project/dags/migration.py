@@ -14,12 +14,12 @@ with DAG(
     tags=["migration"],
 ) as dag:
 
-    postres_migrate = PythonOperator(
+    postgres_migration = PythonOperator(
         task_id="postgres_migration",
         python_callable=postgres_migration
     )
 
-    msql_migrate = PythonOperator(
+    mysql_migration = PythonOperator(
         task_id="mysql_migration",
         python_callable=mysql_migration
     )
