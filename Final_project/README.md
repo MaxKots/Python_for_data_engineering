@@ -17,93 +17,6 @@ docker build -t airflow .
 docker compose up  
 ```
 
-## 2. Описание аналитических витрин    
-
- **2.1 all_orders**. Все заказы с информацией о пользователях и продуктах:
-
-| Поле | Описание | 
-|-------------------|--------------------------------------| 
-| order_id | Номер заказа | 
-| order_date | Дата заказа | 
-| delivery_date | Дата доставки | 
-| total_amount | Общая сумма заказа | 
-| status | Статус заказа | 
-| user_id | Идентификатор пользователя | 
-| full_name | Полное имя пользователя | 
-| email | Почта пользователя | 
-| phone | Телефон пользователя | 
-| loyalty_status | Статус карты лояльности | 
-| product_id | Идентификатор продукта | 
-| product_name | Имя продукта | 
-| category_id | Идентификатор категории | 
-| category_name | Имя категории | 
-| quantity | Количество продукта в заказе | 
-| price_per_unit | Цена за единицу продукта | 
-| total_price | Общая цена за позицию в заказе |
-
-**SQL-код:**  
-```SELECT 
-    o.order_id,
-    o.order_date,
-    o.delivery_date,
-    o.total_amount,
-    o.status,
-    u.full_name,
-    u.email,
-    u.phone,
-    u.loyalty_status,
-    od.product_id,
-    p.product_name,
-    c.category_name,
-    od.quantity,
-    od.price_per_unit,
-    od.total_price
-FROM 
-    Orders o
-JOIN 
-    Users u ON o.user_id = u.user_id
-JOIN 
-    OrderDetails od ON o.order_id = od.order_id
-JOIN 
-    Products p ON od.product_id = p.product_id
-JOIN 
-    ProductCategories c ON p.category_id = c.category_id;
-```
-
-- **2.2 amount_by_user**. Общее количество заказов и общей суммы по каждому пользователю:
-
-| Поле | Описание |
-|-------------------|----------------------------------------------------|
-| user_id | Идентификатор пользователя | 
-| full_name | Полное имя пользователя | 
-| total_orders | Общее количество заказов пользователя | 
-| total_spent | Общая сумма, потраченная пользователем |
-
-**SQL-код:**  
-```SELECT 
-    u.user_id,
-    u.full_name,
-    COUNT(o.order_id) AS total_orders,
-    SUM(o.total_amount) AS total_spent
-FROM 
-    Users u
-LEFT JOIN 
-    Orders o ON u.user_id = o.user_id
-GROUP BY 
-    u.user_id, u.full_name
-ORDER BY 
-    total_spent DESC;
-```
-
-## 3. Airflow  
-
-Заходим по адресу: [http://127.0.0.0:8081/](http://127.0.0.0:8081/login/)  
-Логин: admin  
-Пароль: admin
-
-Описание этого блока еще в процессе
-
-
 ## Как воспользоваться kafka  
 
 - Cоздаем виртуальное окружение  
@@ -120,3 +33,9 @@ source venv/bin/activate
 ```
 pip install -r kafka_req.txt
 ```
+
+## 2. Airflow  
+
+Заходим по адресу: [http://127.0.0.0:8081/](http://127.0.0.0:8081/login/)  
+Логин: admin  
+Пароль: admin
