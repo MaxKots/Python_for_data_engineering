@@ -2,19 +2,19 @@ DROP TABLE IF EXISTS all_orders;
 
 
 CREATE TABLE all_orders AS (
-SELECT 
+SELECT
     o.order_id,
     o.order_date,
     o.delivery_date,
     o.total_amount,
     o.status,
-    u.full_name,
+    CONCAT_WS(' ', u.first_name, u.last_name) as full_name,    
     u.email,
     u.phone,
     u.loyalty_status,
     od.product_id,
-    p.product_name,
-    c.category_name,
+    p.name as product_name,
+    c.name as category_name,
     od.quantity,
     od.price_per_unit,
     od.total_price
