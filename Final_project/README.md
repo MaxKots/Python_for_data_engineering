@@ -42,8 +42,9 @@ docker compose up
 | total_price | Общая цена за позицию в заказе |
 
 **SQL-код:**  
-```SELECT
- o.order_id,
+```
+SELECT
+    o.order_id,
     o.order_date,
     o.delivery_date,
     o.total_amount,
@@ -70,6 +71,9 @@ JOIN
     ProductCategories c ON p.category_id = c.category_id;
 ```
 
+**Результат выборки:**    
+  ![Иллюстрация к проекту № 1](https://github.com/MaxKots/Python_for_data_engineering/tree/main/Final_project/screenshot/2.jpg)  
+
 - **2.2 amount_by_user**. Общее количество заказов и общей суммы по каждому пользователю:
 
 | Поле | Описание |
@@ -80,9 +84,10 @@ JOIN
 | total_spent | Общая сумма, потраченная пользователем |
 
 **SQL-код:**  
-```SELECT 
+```
+SELECT 
     u.user_id,
-    u.full_name,
+    CONCAT_WS(' ', u.first_name, u.last_name) as full_name,
     COUNT(o.order_id) AS total_orders,
     SUM(o.total_amount) AS total_spent
 FROM 
@@ -90,10 +95,13 @@ FROM
 LEFT JOIN 
     Orders o ON u.user_id = o.user_id
 GROUP BY 
-    u.user_id, u.full_name
+    u.user_id, full_name
 ORDER BY 
     total_spent DESC;
-```
+```  
+
+**Результат выборки:**    
+  ![Иллюстрация к проекту № 2](https://github.com/MaxKots/Python_for_data_engineering/tree/main/Final_project/screenshot/3.jpg)  
 
 ## 3. Airflow  
 
