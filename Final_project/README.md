@@ -43,6 +43,7 @@ docker compose up
 
 **SQL-код:**  
 ```
+CREATE TABLE all_orders AS (
 SELECT
     o.order_id,
     o.order_date,
@@ -68,7 +69,8 @@ JOIN
 JOIN 
     Products p ON od.product_id = p.product_id
 JOIN 
-    ProductCategories c ON p.category_id = c.category_id;
+    ProductCategories c ON p.category_id = c.category_id
+);
 ```
 
 **Результат выборки:**    
@@ -86,6 +88,7 @@ JOIN
 
 **SQL-код:**  
 ```
+CREATE TABLE amount_by_user AS (
 SELECT 
     u.user_id,
     CONCAT_WS(' ', u.first_name, u.last_name) as full_name,
@@ -98,7 +101,8 @@ LEFT JOIN
 GROUP BY 
     u.user_id, full_name
 ORDER BY 
-    total_spent DESC;
+    total_spent DESC
+);
 ```  
 
 **Результат выборки:**    
