@@ -72,7 +72,8 @@ JOIN
 ```
 
 **Результат выборки:**    
-  ![Иллюстрация к проекту № 1](https://github.com/MaxKots/Python_for_data_engineering/tree/main/Final_project/screenshot/2.jpg)  
+  ![Иллюстрация к проекту № 1](https://github.com/MaxKots/Python_for_data_engineering/blob/main/Final_project/screenshot/2.jpg)  
+  
 
 - **2.2 amount_by_user**. Общее количество заказов и общей суммы по каждому пользователю:
 
@@ -101,7 +102,7 @@ ORDER BY
 ```  
 
 **Результат выборки:**    
-  ![Иллюстрация к проекту № 2](https://github.com/MaxKots/Python_for_data_engineering/tree/main/Final_project/screenshot/3.jpg)  
+  ![Иллюстрация к проекту № 2](https://github.com/MaxKots/Python_for_data_engineering/blob/main/Final_project/screenshot/3.jpg)  
 
 ## 3. Airflow  
 
