@@ -114,7 +114,12 @@ ORDER BY
 Логин: admin  
 Пароль: admin
 
-Описание этого блока еще в процессе
+В Airflow 3 DAGa:  
+- init_and_migrate_tables - создать таблицы-источники и приемники
+- create_staging - создаем аналитические витрины
+- data_replication - переносим данные из PostgreSQL в MySQL
+
+  ![Иллюстрация к проекту № 3](https://github.com/MaxKots/Python_for_data_engineering/blob/main/Final_project/screenshot/1.png) 
 
 
 ## Как воспользоваться kafka  
